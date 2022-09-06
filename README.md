@@ -26,7 +26,7 @@ energy[1:-1,1:-1] = (Dx2 + Dy2)**0.5 #add x and y gradients and assign them to t
 
 ```
 
-Here is an example of an original image (left) and the resulting energy function (right):
+Here is an example of an original image (left, Swiss cows are happy cows) and the resulting energy function (right):
 
 ![Alt text](energy_demo.jpg)
 
