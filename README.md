@@ -40,7 +40,7 @@ It turns out that this task falls into a larger class of problems in graph theor
 
 Each black circle, or vertex, represents a pixel and each pixel is connected by a directed edge to its neighbors in the row below.  This graph structure is appropriate because we are seeking a continuous path from the top row to the bottom, meaning that each pixel can lead only to its neighbors in the next row down.  Every vertex in this path has an index (the number in white) and a value (the energy of that pixel, not shown).  To find the lowest energy seam, we consider paths leading from each possible source vertex in the top row, and then choose the path with the lowest energy.  As an example, let's consider paths leading from vertex 3.  Shown below are all vertices that are reachable from vertex 3.
 
-[!Alt text](digraph3.jpg)
+[!Alt text](digraph_3.jpg)
 
 We construct a list of these vertices with the following function:
 
