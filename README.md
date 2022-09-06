@@ -28,7 +28,7 @@ energy[1:-1,1:-1] = (Dx2 + Dy2)**0.5 #add x and y gradients and assign them to t
 
 Here is an example of an original image (left) and the resulting energy function (right):
 
-[!Alt text](energy_demo.jpg)
+![Alt text](energy_demo.jpg)
 
 We see that high energies are assigned to areas of the image where there is a lot of visual activity -- this can be the edge of an object, the detail of an intiricate pattern like a face or a cloud, or any other feature where color or intensity is rapidly changing as a function of pixel position.  
 
@@ -36,11 +36,11 @@ Given this energy array, the seam carving task is now to systematically remove p
 
 It turns out that this task falls into a larger class of problems in graph theory related to finding the [shortest path](https://en.wikipedia.org/wiki/Shortest_path_problem) in a graph.  Luckily, the seam carving task involves a particularly simple graph, called a directed acyclic graph, in which each edge has a direction associated with it and there exists no vertex such that a directed path leads from that vertex back to itself.  To make this concrete, here is an illustration of the graph structure that we will use to represent an image:
 
-[!Alt text](digraph.jpg)
+![Alt text](digraph.jpg)
 
 Each black circle, or vertex, represents a pixel and each pixel is connected by a directed edge to its neighbors in the row below.  This graph structure is appropriate because we are seeking a continuous path from the top row to the bottom, meaning that each pixel can lead only to its neighbors in the next row down.  Every vertex in this path has an index (the number in white) and a value (the energy of that pixel, not shown).  To find the lowest energy seam, we consider paths leading from each possible source vertex in the top row, and then choose the path with the lowest energy.  As an example, let's consider paths leading from vertex 3.  Shown below are all vertices that are reachable from vertex 3.
 
-[!Alt text](digraph_3.jpg)
+![Alt text](digraph_3.jpg)
 
 We construct a list of these vertices with the following function:
 
@@ -103,7 +103,7 @@ It really could not be simpler!  In the code file seamCarving.py, this is carrie
 
 To demonstrate the relationship between seam carving and finding the shortest path, here is a simple example of using the seam carving algorithm to find the shortest way through a hand drawn maze.
 
-[!Alt text](photo.jpg)
+![Alt text](photo.jpg)
 
 Obviously, the shortest path across the page is the straight line.  Let's see if seam carving can get it right!
 
@@ -132,7 +132,7 @@ class SeamCarver():
 
 The resulting energy image for the hand drawn maze is shown below (blue is more negative):
 
-[!Alt text](thresh.jpg)
+![Alt text](thresh.jpg)
 
 Luckily, negative weights are no problem for the shortest paths algorithm on a directed acyclic graph, so we can simply run the following code and plot the result.
 
@@ -141,6 +141,6 @@ carver = SeamCarver('.../image.png')
 sp,seam,mstore = carver.findHorizontalSeam()
 plt.imshow(carver.energy + 100*seam,vmin=-1, vmax=1)
 ```
-[!Alt text](shortest_path.jpg)
+![Alt text](shortest_path.jpg)
 
 The yellow line corresponds to the shortest path found by the algorithm.  Seam carving got it right!  
