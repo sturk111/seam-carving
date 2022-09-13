@@ -62,7 +62,7 @@ s=3
 topOrder = topoSort(s,energy) #topological order of vertices accessible from vertex 3 in the energy array
 ``` 
 
-This list has the very important property that it is in topological order, meaning that edges point in only one direction along the list (i.e. there exist no edges pointing from `topOrder[i]` to `topOrder[j]` if `i>=j`).  Now, the most efficient algorithm for finding the shortest path in a directed acyclic graph is simply to [relax edges in topological order](https://www.geeksforgeeks.org/shortest-path-for-directed-acyclic-graphs/).
+This list has the very important property that it is in topological order, meaning that edges point in only one direction along the list (i.e. there exist no edges pointing from `topOrder[i]` to `topOrder[j]` if `i>=j`).  Now, an efficient algorithm for finding the shortest path in a directed acyclic graph is simply to [relax edges in topological order](https://www.geeksforgeeks.org/shortest-path-for-directed-acyclic-graphs/).
 
 ```python
 distTo = np.full(V,np.inf) #distTo[i] is the shortest path found so far to vertex i 
@@ -101,11 +101,11 @@ It really could not be simpler!  In the code file seamCarving.py, this is carrie
 
 # A Shortest Paths Example
 
-To demonstrate the relationship between seam carving and finding the shortest path, here is a simple example of using the seam carving algorithm to find the shortest way through a hand drawn maze.
+To demonstrate the relationship between seam carving and finding the shortest path, here is a simple example of using the seam carving algorithm to find the shortest way through a hand drawn maze.  
 
 ![Alt text](photo.jpg)
 
-Obviously, the shortest path across the page is the straight line.  Let's see if seam carving can get it right!
+Ok, a very crude hand drawn maze!  Obviously, the shortest path across the page is the straight line.  Let's see if seam carving can get it right!
 
 In this case, we are actually going to be looking for a path with *maximum* energy, since the gradient will be larger where there is ink on the page.  To accomodate this, we modify our `SeamCarver` class to compute a binary energy function that is proportional to the negative gradient.
 
